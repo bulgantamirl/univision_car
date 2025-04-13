@@ -16,9 +16,7 @@ const path = require("path");
 export default defineConfig({
   esbuild: {
     loader: "jsx",
-    include: /src\/.*\.jsx?$/,
-    // loader: "tsx",
-    // include: /src\/.*\.[tj]sx?$/,
+    include: /src\/.*\.[jt]sx?$/,
     exclude: [],
   },
   build: {
@@ -53,7 +51,7 @@ export default defineConfig({
   },
   plugins: [
     react({
-      jsxRuntime: "classic"
+      jsxRuntime: "classic",
     }),
     viteTsconfigPaths(),
     svgrPlugin(),

@@ -9,7 +9,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  overflow-y: hidden;
   height: 100vh;
   width: 100%;
   touch-action: manipulation;
@@ -18,8 +17,12 @@ body {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -ms-user-select: none;
+  overflow-y: auto;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 .overflow-x-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -78,10 +81,106 @@ a {
   scroll-snap-type: y mandatory;
 }
 
-.custom-hotspot {
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid #333;
-  border-radius: 5px;
-  padding: 5px;
+.eye-hotspot {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  background-image: url('assets/eye.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
 }
+.back-hotspot {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  border-radius: 30px;
+}
+.interior-hotspot {
+  
+}
+.carousel {
+  position: relative;
+  width: 23rem;
+  height: 23rem;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.card-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform:
+          rotateY(calc(var(--offset) * 50deg))
+          scaleY(calc(1 + var(--abs-offset) * -0.4))
+          translateZ(calc(var(--abs-offset) * -30rem))
+          translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 1rem));
+  transition: all 0.3s ease-out;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: hsl(280deg, 40%, calc(100% - var(--abs-offset) * 50%));
+  border-radius: 1rem;
+  color: #9CA3AF;
+  text-align: justify;
+  transition: all 0.3s ease-out;
+}
+
+.card h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.card p,
+.card h2 {
+  transition: all 0.3s ease-out;
+  opacity: var(--active);
+}
+
+.nav {
+  color: white;
+  font-size: 5rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  background: unset;
+  border: unset;
+}
+
+.nav.left {
+  transform: translateX(-100%) translateY(-50%);
+}
+
+.nav.right {
+  right: 0;
+  transform: translateX(100%) translateY(-50%);
+}
+
+.swiper-pagination-bullet {
+  background: #ccc;
+  width: 12px !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+  opacity: 0.5;
+  margin: 0 4px;
+  transition: 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4ade80 !important;
+  opacity: 1;
+}
+

@@ -1,37 +1,125 @@
-import "pannellum/build/pannellum.css";
-
+import image1 from "assets/image1.jpg";
 import rav4Panaroma from "assets/panaromic360.jpg";
-import React, { useEffect, useRef } from "react";
-import { Pannellum } from "react-pannellum";
+import univision from "assets/univision.svg";
+import Spinner from "components/Spinner";
+import { Pannellum } from "pannellum-react";
+import React, { useEffect, useRef, useState } from "react";
 const PanoramaViewer = () => {
-  const viewerRef = useRef(null);
-  const config = {
-    autoRotate: -2,
-  };
-
-  return (
-    <div ref={viewerRef} style={{ width: "100%", height: "500px" }}>
-      <Pannellum
-        width="100%"
-        height="500px"
-        image={rav4Panaroma}
-        pitch={10}
-        yaw={180}
-        hfov={110}
-        autoLoad
-        showZoomCtrl
-        hotspots={[
-          {
-            pitch: 10,
-            yaw: 120,
-            type: "custom",
-            cssClass: "custom-hotspot",
-            clickHandlerFunc: () => alert("Popup!"),
-            clickHandlerArgs: {},
+  const Scenes = {
+    scene1: {
+      key: 0,
+      title: "Rav4",
+      image: rav4Panaroma,
+      pitch: -11,
+      yaw: -3,
+      hotspots: [
+        {
+          pitch: -12,
+          yaw: -25,
+          handleClick: () => {
+            console.log("Going inside car...");
+            setScene(Scenes.scene2); // Transition to scene2
           },
-        ]}
-      />
-    </div>
+        },
+      ],
+    },
+    scene2: {
+      key: 1,
+      title: "Rav4 Inside",
+      image: image1,
+      pitch: 10,
+      yaw: 180,
+      hotspots: [
+        {
+          pitch: -5,
+          yaw: 10,
+          cssClass: "interior-hotspot",
+          handleClick: () => console.log("Clicked seat"),
+        },
+        {
+          pitch: 0,
+          yaw: 90,
+          cssClass: "interior-hotspot",
+          handleClick: () => console.log("Clicked dashboard"),
+        },
+        {
+          pitch: 5,
+          yaw: -60,
+          cssClass: "interior-hotspot",
+          handleClick: () => console.log("Clicked rearview"),
+        },
+        {
+          pitch: 10,
+          yaw: 180,
+          cssClass: "interior-hotspot",
+          handleClick: () => console.log("Clicked trunk"),
+        },
+        {
+          pitch: 15,
+          yaw: -150,
+          cssClass: "back-hotspot",
+          handleClick: () => {
+            console.log("Going back to scene1...");
+            setScene(Scenes.scene1); // Transition back to scene1
+          },
+        },
+      ],
+    },
+  };
+  const [scene, setScene] = useState(Scenes.scene1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const [currentImage, setCurrentImage] = useState(scene.image);
+
+  // Detect image change
+  useEffect(() => {
+    if (scene.image !== currentImage) {
+      setIsLoaded(false);
+      setCurrentImage(scene.image);
+    }
+  }, [scene.image, currentImage]);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
+  return (
+    <section id={"rav4"} className={"w-screen h-[90vh]"}>
+      {!isLoaded && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-white transition-opacity duration-300">
+          <div className="flex flex-col items-center gap-2 justify-center">
+            <img className={"w-[140px] h-auto"} src={univision} alt={""} />
+            <Spinner />
+          </div>
+        </div>
+      )}
+      <Pannellum
+        width={"100%"}
+        height={"90vh"}
+        title={scene.title}
+        image={scene.image}
+        pitch={0.28}
+        yaw={0}
+        hfov={130}
+        onLoad={handleLoad}
+        autoLoad
+        showControls={false}
+        showFullscreenCtrl={false}
+        showZoomCtrl={false}
+        orientationOnByDefault={true}
+      >
+        {scene.hotspots.map((hotspot, index) => (
+          <Pannellum.Hotspot
+            key={index}
+            type="custom"
+            pitch={hotspot.pitch}
+            onLoad={handleLoad}
+            yaw={hotspot.yaw}
+            cssClass={hotspot.cssClass}
+            handleClick={hotspot.handleClick}
+          />
+        ))}
+      </Pannellum>
+    </section>
   );
 };
 
