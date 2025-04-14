@@ -171,7 +171,7 @@ a {
 
 .swiper-pagination-bullet {
   background: #ccc;
-  width: 12px !important;
+  width: 10px !important;
   height: 8px !important;
   border-radius: 4px !important;
   opacity: 0.5;
@@ -183,4 +183,6 @@ a {
   background: #4ade80 !important;
   opacity: 1;
 }
-
+.pnlm-panorama-info {
+  display: none !important;
+}
