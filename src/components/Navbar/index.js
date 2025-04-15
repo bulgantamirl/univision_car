@@ -1,10 +1,33 @@
 import logo from "assets/logo.svg";
-import React from "react";
+import React, { useEffect, useState } from "react";
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <nav className="w-full box-border box-border fixed top-0 right-0 left-0 z-[999] flex items-center justify-between px-4 md:px-[60px] py-4 md:py-6 bg-[#e0e0e0] bg-opacity-50 ">
+    <nav
+      className={`w-full box-border fixed top-0 right-0 left-0 z-[999] flex items-center 
+                  justify-between px-4 md:px-[60px] 
+                   transition-all duration-300 ease-in-out ${
+                     isScrolled
+                       ? "bg-white shadow-md py-3 md:py-4"
+                       : "bg-[#e0e0e0]/50 py-4 md:py-6"
+                   } `}
+    >
       <div className="flex items-center gap-2">
-        <img src={logo} alt="Univision Logo" className="w-[40px] md:w-[60px]" />
+        <img
+          src={logo}
+          alt="Univision Logo"
+          className={`  ${
+            isScrolled ? "w-[34px] md:w-[50px]" : "w-[40px] md:w-[60px]"
+          }`}
+        />
       </div>
 
       <div className="flex flex-row items-center gap-8 mr-4">

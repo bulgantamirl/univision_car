@@ -94,10 +94,10 @@ a {
   background-position: center;
   cursor: pointer;
 }
-.back-hotspot {
+.green-hotspot {
   width: 60px;
   height: 60px;
-  background-color: blue;
+  background-color: #64BE00;
   border-radius: 30px;
 }
 .interior-hotspot {

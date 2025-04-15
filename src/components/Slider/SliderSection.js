@@ -62,6 +62,11 @@ const items = [
 
 const cardItems = [
   {
+    image: rav4,
+    title: "Toyota Top Motors албан ёсны дилерийн цоо шинэ RAV4 автомашин",
+    subtitle: "Супер бэлэг",
+  },
+  {
     image: gopro,
     title: "GoPro 12 Hero Black",
     subtitle: "1 ширхэг",
@@ -85,11 +90,6 @@ const cardItems = [
     image: nairamdal,
     title: "Найрамдал зуслан",
     subtitle: "1 хүүхэд",
-  },
-  {
-    image: rav4,
-    title: "RAV4",
-    subtitle: "1 азтан",
   },
 ];
 
@@ -128,7 +128,7 @@ const SliderSection = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}
-        className="w-full h-[400px] md:h-[450px] "
+        className="w-full h-[400px] md:h-[500px] lg:h-[520px] "
       >
         {cardItems?.map((item, index) => (
           <SwiperSlide key={index}>
@@ -141,14 +141,14 @@ const SliderSection = () => {
                 <img
                   src={item?.image}
                   alt={item?.title}
-                  className="h-40  md:h-60 object-contain"
+                  className="h-40  md:h-60 lg:h-64 object-contain"
                 />
               </div>
 
-              <h2 className="font-bold mt-4 text-[18px] md:text-[24px] my-0">
+              <h2 className="font-bold mt-4 text-[18px] md:text-[24px] leading-tight max-w-[320px] my-0">
                 {item?.title}
               </h2>
-              <p className="text-gray-500 text-[16px] md:text-[20px] my-0">
+              <p className="text-gray-500 font-medium text-[16px] md:text-[21px] my-0">
                 {item?.subtitle}
               </p>
             </div>
