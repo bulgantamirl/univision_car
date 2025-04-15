@@ -5,12 +5,22 @@ const VideoSection = () => {
     <section
       id={"video"}
       className={
-        "w-full bg-[#D9D9D9] h-screen flex flex-col items-center justify-center"
+        "w-full bg-white h-auto my-[30px] md:my-[60px] lg:my-[100px] flex flex-col items-center box-border justify-center"
       }
     >
-      <h3 className={"text-[40px] w-[450px] text-center text-[#858585]"}>
-        Киногоо үзээд бэлгийн эзэн болмоор байна уу?
-      </h3>
+      <div className="w-full box-border px-4 md:px-6 lg:px-8">
+        <div className="w-full max-w-7xl aspect-video flex flex-col items-center justify-center mx-auto">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/x_pFGzwYeno?autoplay=1&mute=1"
+            title="Удирдлагаараа шинэ машинаа асаа | RAV4-тэй кино | Univision"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
     </section>
   );
 };

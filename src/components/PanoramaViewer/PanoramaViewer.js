@@ -5,8 +5,8 @@ import Spinner from "components/Spinner";
 import { Pannellum } from "pannellum-react";
 import React, { useEffect, useRef, useState } from "react";
 const PanoramaViewer = () => {
-  const playEngineSound = () => {
-    const audio = new Audio("/sounds/car_start.mp3");
+  const playRav4Sound = () => {
+    const audio = new Audio("/sounds/rav4.mp3");
     audio.play().catch((e) => console.error("Sound playback failed:", e));
   };
 
@@ -22,7 +22,7 @@ const PanoramaViewer = () => {
           pitch: -12,
           yaw: -25,
           handleClick: () => {
-            playEngineSound();
+            playRav4Sound();
             console.log("Going inside car...");
             setScene(Scenes.scene2);
           },
@@ -77,7 +77,6 @@ const PanoramaViewer = () => {
 
   const [currentImage, setCurrentImage] = useState(scene.image);
 
-  // Detect image change
   useEffect(() => {
     if (scene.image !== currentImage) {
       setIsLoaded(false);
@@ -89,7 +88,7 @@ const PanoramaViewer = () => {
     setIsLoaded(true);
   };
   return (
-    <section id={"rav4"} className={"w-screen h-[90vh]"}>
+    <section id={"rav4"} className={"w-full h-[90vh]"}>
       {!isLoaded && (
         <div className="fixed right-0 top-0 left-0 h-screen z-10 flex items-center justify-center bg-white transition-opacity duration-300">
           <div className="flex flex-col items-center gap-2 justify-center">

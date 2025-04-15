@@ -1,5 +1,3 @@
-import "./App.css";
-
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import PanoramaViewer from "components/PanoramaViewer";
@@ -9,7 +7,7 @@ import React from "react";
 
 function App() {
   return (
-    <div className={"w-screen flex flex-col relative "}>
+    <div className={"w-full flex flex-col relative box-border "}>
       <Navbar />
       <PanoramaViewer />
       <SliderSection />

@@ -98,7 +98,7 @@ const SliderSection = () => {
     <section
       id={"slider"}
       className={
-        "h-auto w-screen flex flex-col bg-white  justify-center items-center py-[90px] z-1"
+        "h-auto w-full flex flex-col bg-white  justify-center items-center py-[90px] z-1"
       }
     >
       <div className={"w-full flex flex-col gap-4 items-center mb-[100px]"}>
@@ -107,7 +107,7 @@ const SliderSection = () => {
           src={ravTitle}
           alt={""}
         />
-        <p className={"text-[#858585] text-[24px]"}>Шагналууд</p>
+        <p className={"text-[#858585] text-[24px]"}>Супер бэлгүүд</p>
       </div>
 
       <Swiper
