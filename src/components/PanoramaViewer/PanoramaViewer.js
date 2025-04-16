@@ -1,6 +1,8 @@
 import inside from "assets/inside.png";
+import left from "assets/left.svg";
 import popup from "assets/popup.png";
 import rav4Panaroma from "assets/rav41.png";
+import right from "assets/right.svg";
 import carLock from "assets/sounds/car_lock.mp3";
 import carOpen from "assets/sounds/motor.mp3";
 import univision from "assets/univision.svg";
@@ -57,6 +59,7 @@ const PanoramaViewer = () => {
   };
   const [scene, setScene] = useState(Scenes.scene1);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const [currentImage, setCurrentImage] = useState(scene.image);
 
@@ -80,14 +83,31 @@ const PanoramaViewer = () => {
           </div>
         </div>
       )}
-      <div className={"absolute z-10 right-0 top-[160px]"}>
-        <img
-          className={
-            "w-[150px] md:w-[200px] lg:w-[300px] xl:w-[420px] h-auto opacity-75"
-          }
-          src={popup}
-          alt={""}
-        />
+
+      <div
+        className={`fixed top-[160px] right-0 z-20 transition-transform duration-300 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="relative flex flex-row items-center ">
+          <button
+            onClick={() => setOpen((curr) => !curr)}
+            className="absolute left-[-30px] z-30 text-black border-none bg-white rounded-l-full w-[30px] h-[80px] flex items-center justify-center transition cursor-pointer"
+          >
+            <img
+              className={"w-[20px] h-auto object-contain"}
+              src={open ? right : left}
+              alt="left"
+            />
+          </button>
+
+          {/* Image */}
+          <img
+            className="w-[150px] md:w-[200px] lg:w-[300px] xl:w-[420px] h-auto opacity-90"
+            src={popup}
+            alt="Drawer"
+          />
+        </div>
       </div>
       <Pannellum
         width={"100%"}
