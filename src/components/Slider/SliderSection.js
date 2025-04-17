@@ -98,7 +98,7 @@ const SliderSection = () => {
     <section
       id={"slider"}
       className={
-        "h-auto w-full flex flex-col bg-white  justify-center items-center py-[90px] z-1"
+        "h-auto w-full flex flex-col bg-white  justify-center items-center py-[90px]"
       }
     >
       <div className={"w-full flex flex-col gap-4 items-center mb-[100px]"}>
@@ -132,10 +132,10 @@ const SliderSection = () => {
       >
         {cardItems?.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col items-center text-center gap-4">
+            <div className="flex flex-col items-center text-center gap-4 z-10 ">
               <div
                 className={
-                  "w-[300px] h-[250px] md:h-[300px]  flex flex-col items-center justify-center"
+                  "w-[300px] h-[250px] md:h-[300px]  flex flex-col items-center justify-center z-10"
                 }
               >
                 <img
@@ -155,7 +155,7 @@ const SliderSection = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 items-center justify-center gap-6 py-4 px-8 mt-[30px] sm:p-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 items-center justify-center gap-6 py-4 px-8 mt-[30px] sm:p-8 ">
         {items.map((item, index) => (
           <div
             key={index}
